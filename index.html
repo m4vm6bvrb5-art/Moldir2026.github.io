@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Қыз ұзату | Тоқтарқан & Зәуре</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f8f3eb;
+    color: #29352d;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 20px;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at top left, rgba(190,157,91,.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(190,157,91,.15), transparent 30%),
+        #f8f3eb;
+}
+
+.ornament {
+    position: absolute;
+    color: #b99a5b;
+    opacity: .35;
+    font-size: 90px;
+    pointer-events: none;
+}
+
+.o1 {
+    top: 20px;
+    left: 10px;
+}
+
+.o2 {
+    bottom: 20px;
+    right: 10px;
+    transform: rotate(180deg);
+}
+
+.content {
+    max-width: 650px;
+    z-index: 2;
+}
+
+.small-title {
+    color: #a78645;
+    letter-spacing: 5px;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(58px, 14vw, 105px);
+    font-weight: 500;
+    line-height: .85;
+    color: #294235;
+}
+
+.amp {
+    color: #b89552;
+    font-size: .55em;
+    margin: 10px;
+}
+
+.subtitle {
+    margin-top: 28px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    color: #765f35;
+}
+
+.divider {
+    width: 90px;
+    height: 1px;
+    background: #b89552;
+    margin: 30px auto;
+}
+
+.date {
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.place {
+    margin-top: 10px;
+    color: #6d716b;
+}
+
+section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 45px;
+    color: #294235;
+    margin-bottom: 20px;
+}
+
+.message {
+    max-width: 600px;
+    margin: auto;
+    line-height: 1.9;
+    color: #62675f;
+}
+
+.info {
+    max-width: 600px;
+    margin: 45px auto 0;
+    display: grid;
+    gap: 15px;
+}
+
+.info-card {
+    background: rgba(255,255,255,.65);
+    border: 1px solid rgba(185,154,91,.35);
+    padding: 25px;
+    border-radius: 18px;
+}
+
+.info-card strong {
+    display: block;
+    color: #a78645;
+    margin-bottom: 8px;
+}
+
+.rsvp {
+    background: #294235;
+    color: white;
+}
+
+.rsvp .section-title {
+    color: #f4dfaa;
+}
+
+.form {
+    max-width: 500px;
+    margin: 35px auto 0;
+}
+
+input {
+    width: 100%;
+    padding: 17px 18px;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus {
+    box-shadow: 0 0 0 3px rgba(216,187,122,.3);
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+button {
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #d8bb7a;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.yes {
+    background: #d8bb7a;
+    color: #29352d;
+}
+
+.no {
+    background: transparent;
+    color: white;
+}
+
+#result {
+    margin-top: 25px;
+    min-height: 25px;
+    color: #f4dfaa;
+    line-height: 1.6;
+}
+
+footer {
+    padding: 45px 20px;
+    text-align: center;
+    background: #1e3026;
+    color: #c9c8bf;
+    font-size: 13px;
+}
+
+.footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    color: #d8bb7a;
+    margin-bottom: 10px;
+}
+
+@media(max-width: 500px) {
+    .buttons {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 65px 20px;
+    }
+
+    .section-title {
+        font-size: 38px;
+    }
+
+    .subtitle {
+        font-size: 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+    <div class="ornament o1">❧</div>
+    <div class="ornament o2">❧</div>
+
+    <div class="content">
+
+        <div class="small-title">
+            Қыз ұзату тойы
+        </div>
+
+        <h1>
+            Тоқтарқан
+            <span class="amp">&</span>
+            Зәуре
+        </h1>
+
+        <div class="divider"></div>
+
+        <div class="subtitle">
+            Сізді қуанышымыздың қадірлі қонағы
+            болуға шақырамыз
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="date">
+            13 ҚАЗАН 2026
+        </div>
+
+        <div class="place">
+            Зайсан қаласы · Астана 86
+        </div>
+
+    </div>
+</div>
+
+<section>
+
+    <div class="section-title">
+        Ардақты ағайын, туған-туыс!
+    </div>
+
+    <p class="message">
+        Өміріміздегі ерекше күндердің бірінде сіздің
+        ақ тілегіңіз бен қуанышты көңіл-күйіңіз
+        біз үшін үлкен сый.
+        Сізді қызымыздың ұзату тойына
+        арнайы шақырамыз!
+    </p>
+
+    <div class="info">
+
+        <div class="info-card">
+            <strong>📅 Күні</strong>
+            13 қазан 2026 жыл
+        </div>
+
+        <div class="info-card">
+            <strong>📍 Мекенжайы</strong>
+            Зайсан қаласы, Астана 86
+        </div>
+
+        <div class="info-card">
+            <strong>💍 Той</strong>
+            Қыз ұзату тойы
+        </div>
+
+    </div>
+
+</section>
+
+<section class="rsvp">
+
+    <div class="section-title">
+        Қатысуыңызды растаңыз
+    </div>
+
+    <p>
+        Тойға келетініңізді немесе келе алмайтыныңызды
+        алдын ала хабарлауыңызды сұраймыз.
+    </p>
+
+    <div class="form">
+
+        <input
+            id="guestName"
+            type="text"
+            placeholder="Аты-жөніңіз"
+        >
+
+        <div class="buttons">
+
+            <button
+                class="yes"
+                onclick="confirmAttendance(true)"
+            >
+                ✓ Қатысамын
+            </button>
+
+            <button
+                class="no"
+                onclick="confirmAttendance(false)"
+            >
+                Қатыса алмаймын
+            </button>
+
+        </div>
+
+        <div id="result"></div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="footer-name">
+        Тоқтарқан & Зәуре
+    </div>
+
+    Ақ тілектеріңізбен бөлісіп,
+    қуанышымызға ортақ болғандарыңызға
+    рақмет! ❤️
+
+</footer>
+
+<script>
+
+function confirmAttendance(attending) {
+
+    const name =
+        document.getElementById("guestName").value.trim();
+
+    const result =
+        document.getElementById("result");
+
+    if (!name) {
+
+        result.innerHTML =
+            "Аты-жөніңізді енгізіңіз 🌸";
+
+        return;
+    }
+
+    if (attending) {
+
+        result.innerHTML =
+            "Рақмет, " + name +
+            "! ❤️ Сізді тойымызда асыға күтеміз!";
+
+    } else {
+
+        result.innerHTML =
+            "Рақмет, " + name +
+            ". Ақ тілегіңіз біз үшін қымбат! 🌿";
+
+    }
+}
+
+</script>
+
+</body>
+</html>
