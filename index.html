@@ -531,3 +531,75 @@ function confirmAttendance(attending) {
 
 </body>
 </html>
+<script>
+
+const GOOGLE_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbwckYADsBNpj9UBZkKzwHeQJoVxvjjxlKKrm2-s-Eh2qvbGAVlFJQxQO5PApE4FYKb_Kw/exec";
+
+
+async function confirmAttendance(attending) {
+
+    const nameInput =
+        document.getElementById("guestName");
+
+    const result =
+        document.getElementById("result");
+
+    const name =
+        nameInput.value.trim();
+
+    if (!name) {
+        result.innerHTML =
+            "Аты-жөніңізді енгізіңіз 🌸";
+        return;
+    }
+
+    result.innerHTML =
+        "Жауабыңыз жіберілуде... ⏳";
+
+    try {
+
+        await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type":
+                    "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify({
+                name: name,
+                attending: attending
+            })
+        });
+
+        if (attending) {
+
+            result.innerHTML =
+                "Рақмет, " + name +
+                "! ❤️<br>" +
+                "Сізді тойымызда асыға күтеміз!";
+
+        } else {
+
+            result.innerHTML =
+                "Рақмет, " + name +
+                "! 🌿<br>" +
+                "Ақ тілегіңіз біз үшін қымбат!";
+
+        }
+
+        nameInput.value = "";
+
+    } catch (error) {
+
+        result.innerHTML =
+            "Жауап жіберілмеді 😔<br>" +
+            "Қайтадан көріңіз.";
+
+    }
+}
+
+</script>
+
+</body>
+</html>
