@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Аңсар & Мөлдір | Қыз ұзату</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f7f2e9;
+    color: #29382f;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 35px 20px;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 10% 10%, rgba(185,154,91,.22), transparent 30%),
+        radial-gradient(circle at 90% 90%, rgba(185,154,91,.18), transparent 30%),
+        #f7f2e9;
+}
+
+.hero::before,
+.hero::after {
+    content: "❧";
+    position: absolute;
+    color: #b89552;
+    opacity: .25;
+    font-size: 110px;
+}
+
+.hero::before {
+    top: 20px;
+    left: 10px;
+}
+
+.hero::after {
+    bottom: 20px;
+    right: 10px;
+    transform: rotate(180deg);
+}
+
+.content {
+    max-width: 700px;
+    position: relative;
+    z-index: 2;
+}
+
+.small-title {
+    color: #a78645;
+    letter-spacing: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.invite-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: #765f35;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(65px, 17vw, 115px);
+    font-weight: 500;
+    line-height: .8;
+    color: #294235;
+}
+
+.amp {
+    color: #b89552;
+    font-size: .55em;
+    margin: 8px;
+}
+
+.divider {
+    width: 85px;
+    height: 1px;
+    background: #b89552;
+    margin: 30px auto;
+}
+
+.subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 29px;
+    line-height: 1.3;
+    color: #765f35;
+}
+
+.date {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #294235;
+}
+
+.place {
+    margin-top: 12px;
+    color: #6c706b;
+    font-size: 14px;
+}
+
+section {
+    padding: 75px 20px;
+    text-align: center;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 43px;
+    color: #294235;
+    margin-bottom: 20px;
+}
+
+.message {
+    max-width: 620px;
+    margin: auto;
+    line-height: 1.9;
+    color: #62675f;
+}
+
+.info {
+    max-width: 600px;
+    margin: 40px auto 0;
+    display: grid;
+    gap: 15px;
+}
+
+.info-card {
+    background: rgba(255,255,255,.65);
+    border: 1px solid rgba(185,154,91,.35);
+    padding: 25px;
+    border-radius: 20px;
+}
+
+.info-card strong {
+    display: block;
+    color: #a78645;
+    margin-bottom: 8px;
+}
+
+.rsvp {
+    background: #294235;
+    color: white;
+}
+
+.rsvp .section-title {
+    color: #f4dfaa;
+}
+
+.rsvp p {
+    line-height: 1.7;
+    color: #e7e5dc;
+}
+
+.form {
+    max-width: 500px;
+    margin: 30px auto 0;
+}
+
+input {
+    width: 100%;
+    padding: 17px;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+button {
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #d8bb7a;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: .2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.yes {
+    background: #d8bb7a;
+    color: #29352d;
+}
+
+.no {
+    background: transparent;
+    color: white;
+}
+
+#result {
+    margin-top: 25px;
+    color: #f4dfaa;
+    line-height: 1.6;
+}
+
+.hosts {
+    margin-top: 35px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 29px;
+    color: #765f35;
+}
+
+.hosts span {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: #a78645;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.music-button {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 1px solid #d8bb7a;
+    background: #294235;
+    color: #f4dfaa;
+    font-size: 22px;
+    z-index: 100;
+    box-shadow: 0 5px 20px rgba(0,0,0,.18);
+}
+
+footer {
+    padding: 45px 20px;
+    text-align: center;
+    background: #1e3026;
+    color: #c9c8bf;
+    font-size: 13px;
+}
+
+.footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 31px;
+    color: #d8bb7a;
+    margin-bottom: 10px;
+}
+
+@media(max-width: 500px) {
+
+    .buttons {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 60px 20px;
+    }
+
+    .subtitle {
+        font-size: 25px;
+    }
+
+    .section-title {
+        font-size: 38px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- Басты шақыру -->
+
+<section class="hero">
+
+    <div class="content">
+
+        <div class="small-title">
+            Қыз ұзату тойына шақыру
+        </div>
+
+        <div class="invite-text">
+            Ардақты ағайын, туған-туыс,
+            құда-жекжат, дос-жаран!
+        </div>
+
+        <h1>
+            Аңсар
+            <span class="amp">&</span>
+            Мөлдір
+        </h1>
+
+        <div class="divider"></div>
+
+        <div class="subtitle">
+            Сіздерді қуанышымыздың
+            қадірлі қонағы болуға шақырамыз
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="date">
+            13 ҚАЗАН 2026
+        </div>
+
+        <div class="place">
+            📍 Зайсан қаласы, Астана 86
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Ақ тілек -->
+
+<section>
+
+    <div class="section-title">
+        Қуанышымызға ортақ болыңыз!
+    </div>
+
+    <p class="message">
+        Өміріміздегі ерекше күндердің бірінде
+        сіздің ақ тілегіңіз бен қуанышты көңіл-күйіңіз
+        біз үшін үлкен сый.
+        Осы қуанышымызды сіздермен бірге атап өтуді
+        асыға күтеміз!
+    </p>
+
+    <div class="info">
+
+        <div class="info-card">
+            <strong>📅 Күні</strong>
+            13 қазан 2026 жыл
+        </div>
+
+        <div class="info-card">
+            <strong>📍 Мекенжайы</strong>
+            Зайсан қаласы, Астана 86
+        </div>
+
+        <div class="info-card">
+            <strong>💍 Той</strong>
+            Қыз ұзату тойы
+        </div>
+
+    </div>
+
+    <div class="hosts">
+
+        <span>ТОЙ ИЕЛЕРІ</span>
+
+        Тоқтарқан & Зәуре
+
+    </div>
+
+</section>
+
+
+<!-- RSVP -->
+
+<section class="rsvp">
+
+    <div class="section-title">
+        Қатысуыңызды растаңыз
+    </div>
+
+    <p>
+        Тойға келетініңізді немесе келе алмайтыныңызды
+        алдын ала хабарлауыңызды сұраймыз.
+    </p>
+
+    <div class="form">
+
+        <input
+            id="guestName"
+            type="text"
+            placeholder="Аты-жөніңіз"
+        >
+
+        <div class="buttons">
+
+            <button
+                class="yes"
+                onclick="confirmAttendance(true)"
+            >
+                ✓ Қатысамын
+            </button>
+
+            <button
+                class="no"
+                onclick="confirmAttendance(false)"
+            >
+                Қатыса алмаймын
+            </button>
+
+        </div>
+
+        <div id="result"></div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="footer-name">
+        Аңсар & Мөлдір
+    </div>
+
+    Ақ тілектеріңізбен бөлісіп,
+    қуанышымызға ортақ болғандарыңызға
+    рақмет! ❤️
+
+</footer>
+
+
+<!-- Музыка -->
+
+<audio id="weddingMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button
+    class="music-button"
+    id="musicButton"
+    onclick="toggleMusic()"
+>
+    🎵
+</button>
+
+
+<script>
+
+const music =
+    document.getElementById("weddingMusic");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+
+function toggleMusic() {
+
+    if (music.paused) {
+
+        music.play();
+
+        musicButton.innerHTML = "🔊";
+
+    } else {
+
+        music.pause();
+
+        musicButton.innerHTML = "🎵";
+
+    }
+
+}
+
+
+function confirmAttendance(attending) {
+
+    const name =
+        document.getElementById("guestName")
+        .value
+        .trim();
+
+    const result =
+        document.getElementById("result");
+
+    if (!name) {
+
+        result.innerHTML =
+            "Аты-жөніңізді енгізіңіз 🌸";
+
+        return;
+    }
+
+    if (attending) {
+
+        result.innerHTML =
+            "Рақмет, " +
+            name +
+            "! ❤️<br>" +
+            "Сізді тойымызда асыға күтеміз!";
+
+    } else {
+
+        result.innerHTML =
+            "Рақмет, " +
+            name +
+            "! 🌿<br>" +
+            "Ақ тілегіңіз біз үшін қымбат!";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
